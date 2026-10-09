@@ -1,6 +1,5 @@
-"""간단한 TCP connect 포트 스캐너 (MJSEC 과제).
+"""TCP connect 포트 스캐너
 
-허가받은 호스트(예: 127.0.0.1, scanme.nmap.org)에만 사용할 것.
 """
 import argparse
 import socket
@@ -16,7 +15,7 @@ COMMON_SERVICES = {
 
 
 def scan_port(host, port, timeout):
-    """포트 하나에 TCP 연결을 시도. 열려 있으면 True."""
+    # 포트 하나에 TCP 연결을 시도. 열려 있으면 True.
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
         sock.settimeout(timeout)
         # connect_ex는 예외 대신 에러 코드를 반환한다. 0이면 연결 성공(OPEN)
@@ -31,7 +30,7 @@ def service_name(port):
 
 
 def parse_ports(text):
-    """'80' 또는 '1-1000' 형태를 range로 변환."""
+    # '80' 또는 '1-1000' 형태를 range로 변환.
     if "-" in text:
         start, end = map(int, text.split("-", 1))
     else:
